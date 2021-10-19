@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using BAPI.Handlers.BOMHandler;
 using BAPI.Handlers.OTHandler;
+using BAPI.Handlers.NTHandler;
 using DSharpPlus;
 
 namespace BAPI
@@ -54,6 +55,19 @@ namespace BAPI
                     } catch
                     {
                         Console.WriteLine("Couldnt find in OT");
+                    }
+
+                    try
+                    {
+                        string toReturn = NT.retreiveVerse(verse).ToString();
+                        if (toReturn != "could not find verse")
+                        {
+                            e.Message.RespondAsync(toReturn);
+                        }
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Couldnt find in NT");
                     }
                 }
             };
