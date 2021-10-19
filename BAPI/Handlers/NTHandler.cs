@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace BAPI.Handlers.NTHandler
 {
@@ -11,7 +12,7 @@ namespace BAPI.Handlers.NTHandler
     {
         public static string retreiveVerse(string verse)
         {
-            Root NT = JsonConvert.DeserializeObject<Root>("new-testament.json");
+            Root NT = JsonConvert.DeserializeObject<Root>(File.ReadAllText("new-testament.json"));
 
             foreach(Book book in NT.books)
             {
