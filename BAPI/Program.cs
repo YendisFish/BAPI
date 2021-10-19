@@ -29,13 +29,16 @@ namespace BAPI
             {
                 if(e.Message.Content.ToLower().StartsWith("lds") && e.Message.Content.ToLower().Contains("verse"))
                 {
-                    string[] parse = e.Message.Content.ToLower().Split(' ');
-                    string verse = parse[2];
+                    string verse = e.Message.Content.ToString().Replace("lds verse ", "");
+                    Console.WriteLine(verse);
 
                     try
                     {
                         string toReturn = BOM.retreiveVerse(verse).ToString();
-                        e.Message.RespondAsync(toReturn);
+                        if(toReturn != "could not find verse")
+                        {
+                            e.Message.RespondAsync(toReturn);
+                        }
                     } catch(Exception ex)
                     {
                         Console.WriteLine("Could not find in BOM");
@@ -44,7 +47,10 @@ namespace BAPI
                     try
                     {
                         string toReturn = OT.retreiveVerse(verse).ToString();
-                        e.Message.RespondAsync(toReturn);
+                        if(toReturn != "could not find verse")
+                        {
+                            e.Message.RespondAsync(toReturn);
+                        }
                     } catch
                     {
                         Console.WriteLine("Couldnt find in OT");

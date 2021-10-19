@@ -10,26 +10,26 @@ namespace BAPI.Handlers.BOMHandler
 {
     public class BOM
     {
-        public static async Task<string> retreiveVerse(string verse)
+        public static string retreiveVerse(string verse)
         {
-
             Root BOM = JsonConvert.DeserializeObject<Root>(File.ReadAllText("book-of-mormon.json"));
 
             foreach(Book book in BOM.books)
             {
                 foreach(Chapter chapt in book.chapters)
                 {
-                    foreach(Vers verses in chapt.verses)
+                    foreach(Vers v in chapt.verses)
                     {
-                        if(verses.reference == verse)
+                        if(v.reference == verse.Trim().ToString())
                         {
-                            return verses.reference + " | " + verses.text;
+                            Console.WriteLine(v.text);
+                            return v.reference + " | " + v.text;
                         }
                     }
                 }
             }
 
-            return null;
+            return "could not find verse";
         } 
     }
 

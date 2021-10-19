@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,25 +10,26 @@ namespace BAPI.Handlers.OTHandler
 {
     public class OT
     {
-        public static async Task<string> retreiveVerse(string verse)
+        public static string retreiveVerse(string verse)
         {
-            Root OT = JsonConvert.DeserializeObject<Root>("old-testament.json");
+            Root BOM = JsonConvert.DeserializeObject<Root>(File.ReadAllText("old-testament.json"));
 
-            foreach(Book books in OT.books)
+            foreach (Book book in BOM.books)
             {
-                foreach(Chapter chapters in books.chapters)
+                foreach (Chapter chapt in book.chapters)
                 {
-                    foreach(Vers verses in chapters.verses)
+                    foreach (Vers v in chapt.verses)
                     {
-                        if(verses.reference == verse)
+                        if (v.reference == verse.Trim().ToString())
                         {
-                            return verses.reference + " | " + verses.text;
+                            Console.WriteLine(v.text);
+                            return v.reference + " | " + v.text;
                         }
                     }
                 }
             }
 
-            return null;
+            return "could not find verse";
         }
     }
     // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
