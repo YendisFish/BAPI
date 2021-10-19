@@ -8,26 +8,28 @@ using Newtonsoft.Json;
 
 namespace BAPI.Handlers
 {
-    public class mainClass
+    public class BOM
     {
-        public List<Root> getBookList()
+        public string retreiveVerse(string verse)
         {
 
             Root BOM = JsonConvert.DeserializeObject<Root>(File.ReadAllText("book-of-mormon.json"));
-            Root DNC = JsonConvert.DeserializeObject<Root>(File.ReadAllText("doctrine-and-covenants.json"));
-            Root NT = JsonConvert.DeserializeObject<Root>(File.ReadAllText("net-testament.json"));
-            Root OT = JsonConvert.DeserializeObject<Root>(File.ReadAllText("old-testamant.json"));
-            Root POGP = JsonConvert.DeserializeObject<Root>(File.ReadAllText("pearl-of-great-price.json"));
 
-            List<Root> allBooks = new List<Root>();
+            foreach(Book book in BOM.books)
+            {
+                foreach(Chapter chapters in book.chapters)
+                {
+                    foreach(Vers verses in chapters.verses)
+                    {
+                        if(verses.reference == verse)
+                        {
+                            return verses.reference + " | " + verses.text;
+                        }
+                    }
+                }
+            }
 
-            allBooks.Add(OT);
-            allBooks.Add(NT);
-            allBooks.Add(BOM);
-            allBooks.Add(DNC);
-            allBooks.Add(POGP);
-
-            return allBooks;
+            return null;
         } 
     }
 
