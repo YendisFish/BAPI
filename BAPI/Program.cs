@@ -21,9 +21,9 @@ namespace BAPI
 
             DiscordClient client = new DiscordClient(new DiscordConfiguration()
             {
-                Token = getToken(),
+                Token = File.ReadAllText("token.txt"),
                 TokenType = TokenType.Bot,
-            });
+            }); ;
 
             client.MessageCreated += async (s, e) =>
             {
@@ -64,6 +64,7 @@ namespace BAPI
 
         public static string getToken()
         {
+            Console.WriteLine(File.ReadAllText("token.txt"));
             return File.ReadAllText("token.txt").Trim().ToString();
         }
     }
