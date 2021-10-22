@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BAPI.Handlers.BOMHandler;
 using BAPI.Handlers.OTHandler;
 using BAPI.Handlers.NTHandler;
+using BAPI.Handlers.DNCHandler;
 using DSharpPlus;
 
 namespace BAPI
@@ -68,6 +69,21 @@ namespace BAPI
                     catch
                     {
                         Console.WriteLine("Couldnt find in NT");
+                    }
+
+                    try
+                    {
+                        string toReturn = DNC.retreiveVerse(verse).ToString();
+                        Console.WriteLine(toReturn);
+                        
+                        if (toReturn != "could not find verse")
+                        {
+                            e.Message.RespondAsync(toReturn);
+                        }
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Couldnt find in DNC");
                     }
                 }
             };

@@ -20,7 +20,7 @@ namespace BAPI.Handlers.OTHandler
                 {
                     foreach (Vers v in chapt.verses)
                     {
-                        if (v.reference == verse.Trim().ToString())
+                        if (v.reference == verse)
                         {
                             Console.WriteLine(v.text);
                             return v.reference + " | " + v.text;

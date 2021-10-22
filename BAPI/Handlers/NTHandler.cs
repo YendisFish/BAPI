@@ -20,7 +20,7 @@ namespace BAPI.Handlers.NTHandler
                 {
                     foreach(Vers v in chapter.verses)
                     {
-                        if(v.reference == verse.Trim().ToString())
+                        if(v.reference == verse)
                         {
                             Console.WriteLine(v.text);
                             return v.reference + " | " + v.text;
