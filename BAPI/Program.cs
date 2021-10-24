@@ -32,8 +32,6 @@ namespace BAPI
             {
                 if(e.Message.Content.ToLower().StartsWith("lds") && e.Message.Content.ToLower().Contains("verse-array"))
                 {
-                    e.Message.RespondAsync("Working");
-
                     string verses = e.Message.Content.ToString().Replace("lds verse-array ", "");
 
                     ArrayHandler aHandler = new ArrayHandler();
