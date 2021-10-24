@@ -6,6 +6,7 @@ using BAPI.Handlers.BOMHandler;
 using BAPI.Handlers.OTHandler;
 using BAPI.Handlers.NTHandler;
 using BAPI.Handlers.DNCHandler;
+using BAPI.Handlers.ArrayHandler;
 using DSharpPlus;
 
 namespace BAPI
@@ -29,6 +30,21 @@ namespace BAPI
 
             client.MessageCreated += async (s, e) =>
             {
+                if(e.Message.Content.ToLower().StartsWith("lds") && e.Message.Content.ToLower().Contains("verse-array"))
+                {
+                    e.Message.RespondAsync("Working");
+
+                    string verses = e.Message.Content.ToString().Replace("lds verse-array ", "");
+
+                    ArrayHandler aHandler = new ArrayHandler();
+                    string[] VersesToReturn = aHandler.VerseArray(verses);
+
+                    foreach(string val in VersesToReturn)
+                    {
+                        e.Message.RespondAsync(val);
+                    }
+                }
+
                 if(e.Message.Content.ToLower().StartsWith("lds") && e.Message.Content.ToLower().Contains("verse"))
                 {
                     string verse = e.Message.Content.ToString().Replace("lds verse ", "");
