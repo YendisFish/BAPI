@@ -37,11 +37,21 @@ namespace BAPI
                     string verses = e.Message.Content.ToString().Replace("lds verse-array ", "");
 
                     ArrayHandler aHandler = new ArrayHandler();
+
+                    aHandler.VerseArray(verses);
+
                     string[] VersesToReturn = aHandler.VerseArray(verses);
 
                     foreach(string val in VersesToReturn)
                     {
-                        e.Message.RespondAsync(val);
+                        if(val == "could not find verse")
+                        {
+                            return;
+                        } else
+                        {
+                            await e.Message.RespondAsync(val);
+                        }
+
                     }
                 }
 

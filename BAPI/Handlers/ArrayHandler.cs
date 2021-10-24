@@ -14,26 +14,27 @@ namespace BAPI.Handlers.ArrayHandler
     {
         public string[] VerseArray(string commandtoparse)
         {
-            string[] parserArray = commandtoparse.Split('-');
-            int passToForeach = Convert.ToInt32(parserArray[1]);
+            string[] chapter = commandtoparse.Split(':');
+            string[] nums = chapter[1].Split("-");
 
             List<string> verses = new();
 
-            List<char> fullParsedArray = parserArray[0].ToList();
-            int ParsedArrayCount = fullParsedArray.Count();
-
-            for(int i = 0; i < passToForeach; i++)
+            for(int i = Convert.ToInt32(nums[0]); i <= Convert.ToInt32(nums[1]); i++)
             {
-                int currentNum = fullParsedArray[ParsedArrayCount - i];
-                fullParsedArray[ParsedArrayCount] = Convert.ToChar(currentNum.ToString());
+                string verse = chapter[0] + ":" + i.ToString();
 
-                string verse = fullParsedArray.ToString();
+                Console.WriteLine(verse);
 
                 string toReturn = "";
 
                 try
                 {
                     toReturn = BOM.retreiveVerse(verse).ToString();
+
+                    if(toReturn != "could not find verse")
+                    {
+                        verses.Add(toReturn);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -43,6 +44,11 @@ namespace BAPI.Handlers.ArrayHandler
                 try
                 {
                     toReturn = OT.retreiveVerse(verse).ToString();
+
+                    if (toReturn != "could not find verse")
+                    {
+                        verses.Add(toReturn);
+                    }
                 }
                 catch
                 {
@@ -52,6 +58,11 @@ namespace BAPI.Handlers.ArrayHandler
                 try
                 {
                     toReturn = NT.retreiveVerse(verse).ToString();
+
+                    if (toReturn != "could not find verse")
+                    {
+                        verses.Add(toReturn);
+                    }
                 }
                 catch
                 {
@@ -61,13 +72,18 @@ namespace BAPI.Handlers.ArrayHandler
                 try
                 {
                     toReturn = DNC.retreiveVerse(verse).ToString();
+
+                    if (toReturn != "could not find verse")
+                    {
+                        verses.Add(toReturn);
+                    }
                 }
                 catch
                 {
                     Console.WriteLine("Couldnt find in DNC");
                 }
 
-                verses.Add(toReturn);
+                Console.WriteLine(toReturn);
             }
 
             return verses.ToArray();
