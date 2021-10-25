@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "BAPI": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
