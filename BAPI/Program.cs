@@ -24,13 +24,13 @@ namespace BAPI
 
             FileStream fs = File.Create("token.txt");
             fs.Close();
-            File.WriteAllText("token.txt", "{TOKEN HERE!!!!}");
+            File.WriteAllText("token.txt", "{ENTER TOKEN HERE}");
             
             DiscordClient client = new DiscordClient(new DiscordConfiguration()
             {
                 Token = File.ReadAllText("token.txt"),
                 TokenType = TokenType.Bot,
-            }); ;
+            });
 
             client.MessageCreated += async (s, e) =>
             {
