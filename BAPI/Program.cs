@@ -22,6 +22,10 @@ namespace BAPI
         {
             Console.WriteLine("init");
 
+            FileStream fs = File.Create("token.txt");
+            fs.Close();
+            File.WriteAllText("token.txt", "{TOKEN HERE!!!!}");
+            
             DiscordClient client = new DiscordClient(new DiscordConfiguration()
             {
                 Token = File.ReadAllText("token.txt"),
