@@ -8,6 +8,7 @@ using BAPI.Handlers.NTHandler;
 using BAPI.Handlers.DNCHandler;
 using BAPI.Handlers.ArrayHandler;
 using DSharpPlus;
+using DSharpPlus.Entities;
 
 namespace BAPI
 {
@@ -34,6 +35,13 @@ namespace BAPI
 
             client.MessageCreated += async (s, e) =>
             {
+                if (e.Message.Content.ToLower().StartsWith("lds") && e.Message.Content.ToLower().Contains("ticket"))
+                {
+                    ulong ID = 911849982229905468;
+                    DiscordChannel channel = await client.GetChannelAsync(ID);
+                    client.SendMessageAsync(channel, "<@&899443505192112178> Help needed from <@!" + e.Author.Id + ">");
+                }
+                
                 if(e.Message.Content.ToLower().StartsWith("lds") && e.Message.Content.ToLower().Contains("verse-array"))
                 {
                     string verses = e.Message.Content.ToString().Replace("lds verse-array ", "");
