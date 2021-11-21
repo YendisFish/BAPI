@@ -12,7 +12,7 @@ namespace BAPI.Handlers.DNCHandler
     {
         public static string retreiveVerse(string verse)
         {
-            Root OT = JsonConvert.DeserializeObject<Root>(File.ReadAllText("doctrine-and-covenants.json"));
+            Root OT = JsonConvert.DeserializeObject<Root>(File.ReadAllText("/app/doctrine-and-covenants.json"));
 
             foreach(Section sec in OT.sections)
             {

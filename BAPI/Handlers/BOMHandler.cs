@@ -12,7 +12,7 @@ namespace BAPI.Handlers.BOMHandler
     {
         public static string retreiveVerse(string verse)
         {
-            Root BOM = JsonConvert.DeserializeObject<Root>(File.ReadAllText("book-of-mormon.json"));
+            Root BOM = JsonConvert.DeserializeObject<Root>(File.ReadAllText("/app/book-of-mormon.json"));
 
             foreach(Book book in BOM.books)
             {

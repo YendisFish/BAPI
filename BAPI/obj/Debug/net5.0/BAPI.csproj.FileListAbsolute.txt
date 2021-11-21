@@ -34,7 +34,6 @@ A:\CSharpProj\BAPI\BAPI\obj\Debug\net5.0\BAPI.GeneratedMSBuildEditorConfig.edito
 A:\CSharpProj\BAPI\BAPI\obj\Debug\net5.0\BAPI.AssemblyInfoInputs.cache
 A:\CSharpProj\BAPI\BAPI\obj\Debug\net5.0\BAPI.AssemblyInfo.cs
 A:\CSharpProj\BAPI\BAPI\obj\Debug\net5.0\BAPI.csproj.CoreCompileInputs.cache
-A:\CSharpProj\BAPI\BAPI\obj\Debug\net5.0\BAPI.csproj.CopyComplete
 A:\CSharpProj\BAPI\BAPI\obj\Debug\net5.0\BAPI.dll
 A:\CSharpProj\BAPI\BAPI\obj\Debug\net5.0\ref\BAPI.dll
 A:\CSharpProj\BAPI\BAPI\obj\Debug\net5.0\BAPI.pdb

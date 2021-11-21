@@ -12,7 +12,7 @@ namespace BAPI.Handlers.NTHandler
     {
         public static string retreiveVerse(string verse)
         {
-            Root NT = JsonConvert.DeserializeObject<Root>(File.ReadAllText("new-testament.json"));
+            Root NT = JsonConvert.DeserializeObject<Root>(File.ReadAllText("/app/new-testament.json"));
 
             foreach(Book book in NT.books)
             {
