@@ -36,10 +36,9 @@ namespace BAPI
             client.MessageCreated += async (s, e) =>
             {
                 if (e.Message.Content.ToLower().StartsWith("lds") && e.Message.Content.ToLower().Contains("ticket"))
-                {
-                    ulong ID = 911849982229905468;
-                    DiscordChannel channel = await client.GetChannelAsync(ID);
-                    client.SendMessageAsync(channel, "<@&899443505192112178> Help needed from <@!" + e.Author.Id + ">");
+                {                  
+                    DiscordChannel channel = await e.Guild.CreateChannelAsync(new Guid().ToString(), ChannelType.Text);
+                    await channel.SendMessageAsync("<@&899443505192112178>" + " " + e.Author.Id);
                 }
                 
                 if(e.Message.Content.ToLower().StartsWith("lds") && e.Message.Content.ToLower().Contains("verse-array"))
@@ -121,6 +120,12 @@ namespace BAPI
                     {
                         Console.WriteLine("Couldnt find in DNC");
                     }
+                }
+                if(e.Message.Content.ToLower().StartsWith("lds") && e.Message.Content.ToLower().Contains("invite"))
+                {
+                    //Add Logic
+                    DiscordInvite inv = await e.Message.Channel.CreateInviteAsync();
+                    await e.Message.RespondAsync(inv.Code);
                 }
             };
 
