@@ -25,7 +25,7 @@ namespace BAPI
 
             FileStream fs = File.Create("token.txt");
             fs.Close();
-            File.WriteAllText("token.txt", "ODk5ODU4NzU0Mzg2OTUyMTkz.YW44xQ.pc2mlMAs2rGPYZgcsyDDpU6Cp2g");
+            File.WriteAllText("token.txt", "ODk5ODU4NzU0Mzg2OTUyMTkz.YW44xQ._POifhXFMVUUARa9AQwz_vRqr5E");
             
             DiscordClient client = new DiscordClient(new DiscordConfiguration()
             {
@@ -37,8 +37,8 @@ namespace BAPI
             {
                 if (e.Message.Content.ToLower().StartsWith("lds") && e.Message.Content.ToLower().Contains("ticket"))
                 {                  
-                    DiscordChannel channel = await e.Guild.CreateChannelAsync(new Guid().ToString(), ChannelType.Text);
-                    await channel.SendMessageAsync("<@&899443505192112178>" + " " + e.Author.Id);
+                    DiscordChannel channel = await e.Guild.CreateChannelAsync(Guid.NewGuid().ToString(), ChannelType.Text);
+                    await channel.SendMessageAsync("<@&899443505192112178>" + " <@!" + e.Author.Id + ">");
                 }
                 
                 if(e.Message.Content.ToLower().StartsWith("lds") && e.Message.Content.ToLower().Contains("verse-array"))
@@ -123,9 +123,8 @@ namespace BAPI
                 }
                 if(e.Message.Content.ToLower().StartsWith("lds") && e.Message.Content.ToLower().Contains("invite"))
                 {
-                    //Add Logic
-                    DiscordInvite inv = await e.Message.Channel.CreateInviteAsync();
-                    await e.Message.RespondAsync(inv.Code);
+                    DiscordInvite inv = await e.Message.Channel.CreateInviteAsync(86400, 1);
+                    await e.Message.RespondAsync("https://discord.gg/" + inv.Code);
                 }
             };
 
